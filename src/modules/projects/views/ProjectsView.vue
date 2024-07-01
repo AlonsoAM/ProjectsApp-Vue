@@ -3,6 +3,13 @@
 import FabButton from "@/modules/common/components/FabButton.vue";
 import AddCircle from "@/modules/common/icons/AddCircle.vue";
 import InputModal from "@/modules/common/components/InputModal.vue";
+import {ref} from "vue";
+
+const modalOpen = ref(false)
+const onNewValue = (value: string) => {
+  console.log('onNewValue', value)
+}
+
 </script>
 
 <template>
@@ -31,9 +38,14 @@ import InputModal from "@/modules/common/components/InputModal.vue";
 
   </div>
 
-  <input-modal></input-modal>
+  <input-modal :open="modalOpen"
+               placeholder="Ingrese el nombre del proyecto"
+               titulo="Nuevo Proyecto"
+               subtitulo="Dale un nombre único a tu proyecto."
+               @close="modalOpen = false"
+               @value="onNewValue"></input-modal>
 
-  <fab-button @click="()=>console.log('click')">
+  <fab-button @click="modalOpen = true">
     <add-circle></add-circle>
   </fab-button>
 
