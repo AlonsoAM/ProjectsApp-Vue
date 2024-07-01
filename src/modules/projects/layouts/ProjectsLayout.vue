@@ -10,7 +10,7 @@ import SideMenu from "@/modules/projects/components/SideMenu.vue";
 
     <top-menu></top-menu>
 
-    <main>
+    <main class="flex flex-row">
       <!--   side Menu   -->
 
       <side-menu></side-menu>
