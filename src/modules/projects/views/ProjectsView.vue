@@ -4,8 +4,11 @@ import FabButton from "@/modules/common/components/FabButton.vue";
 import AddCircle from "@/modules/common/icons/AddCircle.vue";
 import InputModal from "@/modules/common/components/InputModal.vue";
 import {ref} from "vue";
+import CustomModal from "@/modules/common/components/CustomModal.vue";
+import ModalIcon from "@/modules/common/icons/ModalIcon.vue";
 
 const modalOpen = ref(false)
+const customModalOpen = ref(false)
 const onNewValue = (value: string) => {
   console.log('onNewValue', value)
 }
@@ -45,8 +48,32 @@ const onNewValue = (value: string) => {
                @close="modalOpen = false"
                @value="onNewValue"></input-modal>
 
+  <custom-modal :open="customModalOpen">
+    <template v-slot:header>
+      <h1>Header</h1>
+    </template>
+    <template v-slot:body>
+      <p> Eiusmaiorum diam utamur per reprimique nisi posuere vehicula malorum mnesarchum tortor viderer vivendo iaculis
+        liber volumus epicuri molestiae laudem. Loremrepudiandae class sadipscing an tractatos atomorum magna mutat
+        dignissim efficitur porttitor donec persius solum animal semper decore. Quonostrum habitasse parturient.
+        Mollisaudire per theophrastus habitant. Enimhas indoctum definitiones pertinacia porttitor. Appetereaccumsan
+        semper suavitate senectus augue wisi liber regione appetere eius maecenas natoque nostra principes senserit
+        montes iriure integer. </p>
+    </template>
+    <template v-slot:footer>
+      <div class="flex justify-end mt-5">
+        <button class="btn mr-4" @click="customModalOpen = false">Close</button>
+        <button class="btn btn-primary" @click="customModalOpen = false">Aceptar</button>
+      </div>
+    </template>
+  </custom-modal>
+
   <fab-button @click="modalOpen = true">
     <add-circle></add-circle>
+  </fab-button>
+
+  <fab-button @click="customModalOpen = true" position="bottom-left">
+    <modal-icon></modal-icon>
   </fab-button>
 
 </template>
