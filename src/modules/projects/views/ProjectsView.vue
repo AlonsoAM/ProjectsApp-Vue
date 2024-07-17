@@ -6,9 +6,13 @@ import InputModal from "@/modules/common/components/InputModal.vue";
 import {ref} from "vue";
 import CustomModal from "@/modules/common/components/CustomModal.vue";
 import ModalIcon from "@/modules/common/icons/ModalIcon.vue";
+import {useProjectStore} from "@/modules/projects/store/projects.store";
 
 const modalOpen = ref(false)
 const customModalOpen = ref(false)
+
+const projectStore = useProjectStore()
+
 const onNewValue = (value: string) => {
   console.log('onNewValue', value)
 }
