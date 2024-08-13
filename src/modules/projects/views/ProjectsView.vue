@@ -13,10 +13,6 @@ const customModalOpen = ref(false)
 
 const projectStore = useProjectStore()
 
-const onNewValue = (value: string) => {
-  console.log('onNewValue', value)
-}
-
 </script>
 
 <template>
@@ -34,11 +30,13 @@ const onNewValue = (value: string) => {
       </thead>
       <tbody>
       <!-- row 1 -->
-      <tr class="hover">
-        <th>1</th>
-        <td>Hart Hagerty</td>
-        <td>Desktop Support Technician</td>
-        <td>Purple</td>
+      <tr v-for="(project, index) in projectStore.projectList" :key="project.id" class="hover">
+        <th>{{ index + 1 }}</th>
+        <td>{{ project.name }}</td>
+        <td>{{ project.tasks.length }}</td>
+        <td>
+          <progress class="progress progress-primary w-56" value="10" max="100"></progress>
+        </td>
       </tr>
       </tbody>
     </table>
@@ -50,7 +48,7 @@ const onNewValue = (value: string) => {
                titulo="Nuevo Proyecto"
                subtitulo="Dale un nombre único a tu proyecto."
                @close="modalOpen = false"
-               @value="onNewValue"></input-modal>
+               @value="projectStore.addProject"></input-modal>
 
   <custom-modal :open="customModalOpen">
     <template v-slot:header>
