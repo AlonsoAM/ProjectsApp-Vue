@@ -18,6 +18,19 @@ export const useProjectStore = defineStore('projects', () => {
         })
     }
 
+    const addTaskToProject = (projectId: string, taskName: string) => {
+
+        if (!taskName) return
+
+        const project = projects.value.find(project => project.id === projectId)
+        if (!project) return
+
+        project.tasks.push({
+            id: uuidv4(),
+            name: taskName
+        })
+    }
+
 
     return {
         // Properties
@@ -28,6 +41,7 @@ export const useProjectStore = defineStore('projects', () => {
         noProjects: computed(() => projects.value.length === 0),
 
         // Methods (Actions)
-        addProject
+        addProject,
+        addTaskToProject
     }
 })
