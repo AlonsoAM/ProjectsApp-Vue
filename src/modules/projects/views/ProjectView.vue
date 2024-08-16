@@ -34,6 +34,7 @@ const addTaskToProject = () => {
   newTask.value = ''
 }
 
+
 </script>
 
 <template>
@@ -55,9 +56,14 @@ const addTaskToProject = () => {
           <tbody>
           <!-- row 1 -->
           <tr v-for="task in project?.tasks" :key="task.id" class="hover">
-            <th></th>
-            <td>{{task.name}}</td>
-            <td></td>
+            <th>
+              <label>
+                <input type="checkbox" class="checkbox checkbox-primary"
+                       @change="projectStore.toggleTask(project!.id, task.id)" :checked="!!task.completedAt"/>
+              </label>
+            </th>
+            <td>{{ task.name }}</td>
+            <td>{{task.completedAt}}</td>
           </tr>
           <!-- row 2 -->
           <tr class="hover">

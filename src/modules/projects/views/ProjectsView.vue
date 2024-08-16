@@ -30,12 +30,12 @@ const projectStore = useProjectStore()
       </thead>
       <tbody>
       <!-- row 1 -->
-      <tr v-for="(project, index) in projectStore.projectList" :key="project.id" class="hover">
+      <tr v-for="(project, index) in projectStore.projectsWithCompletion" :key="project.id" class="hover">
         <th>{{ index + 1 }}</th>
         <td>{{ project.name }}</td>
         <td>{{ project.tasks.length }}</td>
         <td>
-          <progress class="progress progress-primary w-56" value="10" max="100"></progress>
+          <progress class="progress progress-primary w-56" :value="project.completion" max="100"></progress>
         </td>
       </tr>
       </tbody>
