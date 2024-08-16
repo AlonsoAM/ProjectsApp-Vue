@@ -33,7 +33,6 @@ const projectStore = useProjectStore()
           </router-link>
         </template>
       </li>
-
     </ul>
   </aside>
 
